@@ -69,8 +69,11 @@ async function onFormElSubmit(event) {
             top: cardHeight * 2,
             behavior: "smooth",
         });
+
+
+        const lastPage = Math.floor(data.totalHits / pixabayApi.per_page)
         
-        if (pixabayApi.page >= Math.floor(data.totalHits / pixabayApi.per_page)) {
+        if (pixabayApi.page === lastPage ) {
             refs.loadMoreBtn.classList.add('is-hidden');
             Notiflix.Notify.info('Sorry, but you have reached the end of the search results');
         }
@@ -78,3 +81,4 @@ async function onFormElSubmit(event) {
         console.log(`Error: ${err}`)
     }
 }
+
